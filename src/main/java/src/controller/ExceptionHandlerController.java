@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import src.dto.response.ErrorResponse;
 import src.enums.ErrorCode;
 import src.model.exceptions.GenericReaderException;
 
@@ -14,8 +15,21 @@ public class ExceptionHandlerController {
 
     private Logger logger = LoggerFactory.getLogger(ExceptionHandlerController.class);
 
+    @ExceptionHandler({Exception.class})
+    public ResponseEntity<ErrorResponse> handleException(Exception exception) {
+        ErrorResponse errorResponse = ErrorResponse.builder()
+                .message(exception.getMessage())
+                .errorCode(ErrorCode.INTERNAL_SERVER_ERROR)
+                .httpStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+                .build();
+
+        logger.error("Error: exception={}", exception.getMessage());
+        return error(errorResponse);
+    }
+
+
     @ExceptionHandler({GenericReaderException.class})
-    public ResponseEntity<String> handleGenericException(GenericReaderException exception) {
+    public ResponseEntity<ErrorResponse> handleGenericException(GenericReaderException exception) {
 
         ErrorCode errorCode = exception.getErrorCode();
         HttpStatus httpStatus;
@@ -30,12 +44,18 @@ public class ExceptionHandlerController {
                 break;
         }
 
+        ErrorResponse errorResponse = ErrorResponse.builder()
+                .message(exception.getMessage())
+                .errorCode(errorCode)
+                .httpStatus(httpStatus)
+                .build();
+
         logger.error("Error: errorCode={}, errorMessage={}", errorCode, exception.getMessage());
 
-        return error(httpStatus, exception);
+        return error(errorResponse);
     }
 
-    private ResponseEntity<String> error(HttpStatus status, Exception exception) {
-        return ResponseEntity.status(status).body(exception.getMessage());
+    private ResponseEntity<ErrorResponse> error(ErrorResponse errorResponse) {
+        return ResponseEntity.status(errorResponse.getHttpStatus()).body(errorResponse);
     }
 }
