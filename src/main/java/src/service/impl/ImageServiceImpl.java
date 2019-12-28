@@ -1,5 +1,7 @@
 package src.service.impl;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import src.enums.ErrorCode;
@@ -16,6 +18,8 @@ import java.util.List;
 
 @Service
 public class ImageServiceImpl implements ImageService {
+
+    private Logger logger = LoggerFactory.getLogger(ImageServiceImpl.class);
 
     private ImageConverter imageConverter;
 
@@ -60,7 +64,7 @@ public class ImageServiceImpl implements ImageService {
     
     private List<Coordinate> scan(Image requestImage, Image perfectImage) {
         
-        List<Coordinate> matchLocation = new ArrayList<>();
+        List<Coordinate> matchLocations = new ArrayList<>();
 
         for (int requestY = 0; requestY < requestImage.getHeight() - perfectImage.getHeight(); requestY++) {
             for (int requestX = 0; requestX < requestImage.getWidth() - perfectImage.getWidth(); requestX++) {
@@ -70,12 +74,13 @@ public class ImageServiceImpl implements ImageService {
                             .y(requestY)
                             .build();
 
-                    matchLocation.add(coordinate);
+                    logger.info("Successfully located image x-coordinate={} y-coordinate={}", requestX, requestY);
+                    matchLocations.add(coordinate);
                 }
             }
         }
         
-        return matchLocation;
+        return matchLocations;
     }
     
     private boolean isMatchScan(int requestX, int requestY, Image requestImage, Image perfectImage) {
