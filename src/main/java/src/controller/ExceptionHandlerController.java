@@ -1,5 +1,7 @@
 package src.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -9,6 +11,8 @@ import src.model.exceptions.GenericReaderException;
 
 @ControllerAdvice
 public class ExceptionHandlerController {
+
+    private Logger logger = LoggerFactory.getLogger(ExceptionHandlerController.class);
 
     @ExceptionHandler({GenericReaderException.class})
     public ResponseEntity<String> handleGenericException(GenericReaderException exception) {
@@ -25,6 +29,9 @@ public class ExceptionHandlerController {
                 httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
                 break;
         }
+
+        logger.error("Error: errorCode={}, errorMessage={}", errorCode, exception.getMessage());
+
         return error(httpStatus, exception);
     }
 
