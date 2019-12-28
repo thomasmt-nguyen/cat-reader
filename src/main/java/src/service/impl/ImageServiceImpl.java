@@ -80,7 +80,7 @@ public class ImageServiceImpl implements ImageService {
     
     private boolean isMatchScan(int requestX, int requestY, Image requestImage, Image perfectImage) {
 
-        final int minimumThreshold = getFinalScanThreshold(perfectImage);
+        final int minimumThreshold = calculateAcceptableThreshold(perfectImage);
         char[][] perfectGraph = perfectImage.getGraph();
         char[][] requestGraph = requestImage.getGraph();
         int remainingThreshold = perfectImage.getTotalPixels();
@@ -96,7 +96,7 @@ public class ImageServiceImpl implements ImageService {
         return remainingThreshold > minimumThreshold;
     }
     
-    private int getFinalScanThreshold(Image image){
+    private int calculateAcceptableThreshold(Image image){
         double width = image.getWidth();
         double height = image.getHeight();
         double FINAL_SCAN_THRESH_HOLD = .85;

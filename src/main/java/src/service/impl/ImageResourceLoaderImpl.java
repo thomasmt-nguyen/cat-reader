@@ -2,8 +2,10 @@ package src.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import src.enums.ErrorCode;
 import src.enums.ImageType;
 import src.model.Image;
+import src.model.exceptions.GenericReaderException;
 import src.service.ImageConverter;
 import src.service.ImageResourceLoader;
 
@@ -29,13 +31,15 @@ public class ImageResourceLoaderImpl implements ImageResourceLoader {
 
     private String readFile(String resourcePath) {
         try {
-            String imageText = new String(Files.readAllBytes(Paths.get(resourcePath)));
-            return imageText;
+            return new String(Files.readAllBytes(Paths.get(resourcePath)));
         }
         catch (IOException exception)
         {
-            exception.printStackTrace();
-            return null;
+            throw GenericReaderException.builder()
+                    .errorCode(ErrorCode.READ_FILE_ERROR)
+                    .message(String.format("Could not read file from path. path=%s exception=%s", resourcePath,
+                            exception.getMessage()))
+                    .build();
         }
     }
 
