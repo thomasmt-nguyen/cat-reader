@@ -1,5 +1,7 @@
 package src.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +18,8 @@ import java.util.List;
 @RequestMapping(value = "/")
 public class ImageController {
 
+    private Logger logger = LoggerFactory.getLogger(ImageController.class);
+
     private ImageServiceImpl imageService;
 
     @Autowired
@@ -25,7 +29,9 @@ public class ImageController {
 
     @PostMapping(value = "image/scan/{type}")
     public ScanImageResponse scanImage(@RequestBody String requestedImageBody, @PathVariable("type") String requestedType) {
+        logger.info("Scanning requested image");
         List<Coordinate> coordinates = imageService.process(requestedImageBody, requestedType);
+        logger.info("Finished scanning requested image");
         ScanImageResponse response = new ScanImageResponse();
         response.setCoordinates(coordinates);
         return response;

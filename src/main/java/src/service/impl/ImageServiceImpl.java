@@ -37,8 +37,8 @@ public class ImageServiceImpl implements ImageService {
         ImageType imageType = translateImageType(requestedImageType);
         Image requestImage = imageConverter.convert(requestedImageBody);
         Image perfectImage = imageResourceLoader.getPerfectImage(imageType);
-
         validateRequestImage(requestImage, perfectImage);
+
         return scan(requestImage, perfectImage);
     }
 
@@ -74,10 +74,14 @@ public class ImageServiceImpl implements ImageService {
                             .y(requestY)
                             .build();
 
-                    logger.info("Successfully located image x-coordinate={} y-coordinate={}", requestX, requestY);
+                    logger.info("Successfully matched image x-cmoordinate={} y-coordinate={}", requestX, requestY);
                     matchLocations.add(coordinate);
                 }
             }
+        }
+
+        if (matchLocations.isEmpty()) {
+            logger.info("No successful matches for requested image");
         }
         
         return matchLocations;
