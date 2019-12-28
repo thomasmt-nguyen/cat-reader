@@ -1,5 +1,9 @@
 package src.service;
 
+import src.model.Coordinate;
+
+import java.util.List;
+
 public interface ImageService {
-    int process(String image, String type);
+    List<Coordinate> process(String image, String type);
 }

@@ -6,7 +6,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import src.dto.response.ScanImageResponse;
+import src.model.Coordinate;
 import src.service.impl.ImageServiceImpl;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/")
@@ -19,8 +23,11 @@ public class ImageController {
         this.imageService = imageService;
     }
 
-    @PostMapping(value = "image/process/{type}")
-    public int image(@RequestBody String imageText, @PathVariable("type") String type) {
-        return imageService.process(imageText, type);
+    @PostMapping(value = "image/scan/{type}")
+    public ScanImageResponse scanImage(@RequestBody String requestedImageBody, @PathVariable("type") String requestedType) {
+        List<Coordinate> coordinates = imageService.process(requestedImageBody, requestedType);
+        ScanImageResponse response = new ScanImageResponse();
+        response.setCoordinates(coordinates);
+        return response;
     }
 }

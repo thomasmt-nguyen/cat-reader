@@ -2,14 +2,17 @@ package src.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import src.enums.ErrorCode;
 import src.enums.ImageType;
+import src.model.Coordinate;
 import src.model.Image;
+import src.model.exceptions.GenericReaderException;
 import src.service.ImageConverter;
 import src.service.ImageResourceLoader;
 import src.service.ImageService;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class ImageServiceImpl implements ImageService {
@@ -25,55 +28,72 @@ public class ImageServiceImpl implements ImageService {
         this.imageResourceLoader = imageResourceLoader;
     }
 
-    public int process(String imageText, String type) {
-        
-        //TODO: Throw error if type doesn't exists
-        
-        ImageType imageType = ImageType.valueOf(type.toUpperCase());
-        Image requestImage = imageConverter.convert(imageText);
+    public List<Coordinate> process(String requestedImageBody, String requestedImageType) {
+
+        ImageType imageType = translateImageType(requestedImageType);
+        Image requestImage = imageConverter.convert(requestedImageBody);
         Image perfectImage = imageResourceLoader.getPerfectImage(imageType);
-        
-        // TODO: Throw error if image is smaller than scan image
+
+        validateRequestImage(requestImage, perfectImage);
         return scan(requestImage, perfectImage);
     }
+
+    private ImageType translateImageType(String type) {
+        try {
+            return ImageType.valueOf(type.toUpperCase());
+        } catch (IllegalArgumentException exception) {
+            throw GenericReaderException.builder()
+                    .errorCode(ErrorCode.INVALID_IMAGE_TYPE)
+                    .message(String.format("Invalid requested image scan type. imageType=%s", type))
+                    .build();
+        }
+    }
+
+    private void validateRequestImage(Image requestImage, Image perfectImage) {
+        if (requestImage.getWidth() < perfectImage.getWidth() || requestImage.getHeight() < perfectImage.getHeight()) {
+            throw GenericReaderException.builder()
+                    .errorCode(ErrorCode.INVALID_IMAGE_SIZE)
+                    .message("Request body is smaller than the requested scan image")
+                    .build();
+        }
+    }
     
-    private int scan(Image requestImage, Image perfectImage) {
+    private List<Coordinate> scan(Image requestImage, Image perfectImage) {
         
-        Map<Integer, Integer> matchLocation = new HashMap<>();
-        int matchCounter = 0;
+        List<Coordinate> matchLocation = new ArrayList<>();
 
         for (int requestY = 0; requestY < requestImage.getHeight() - perfectImage.getHeight(); requestY++) {
             for (int requestX = 0; requestX < requestImage.getWidth() - perfectImage.getWidth(); requestX++) {
-                boolean isMatch = isMatchScan(requestX, requestY, requestImage, perfectImage);
-                matchCounter += isMatch ? 1 : 0;
-                
-                //TODO: Add match location and match %
-                /*if (isMatch)
-                    matchLocation.(new Map(requestX, requestY))*/
+                if (isMatchScan(requestX, requestY, requestImage, perfectImage)) {
+                    Coordinate coordinate = Coordinate.builder()
+                            .x(requestX)
+                            .y(requestY)
+                            .build();
+
+                    matchLocation.add(coordinate);
+                }
             }
         }
         
-        return matchCounter;
+        return matchLocation;
     }
     
     private boolean isMatchScan(int requestX, int requestY, Image requestImage, Image perfectImage) {
 
-        final int FINAL_IMAGE_THRESH_HOLD = getFinalScanThreshold(perfectImage);
+        final int minimumThreshold = getFinalScanThreshold(perfectImage);
         char[][] perfectGraph = perfectImage.getGraph();
         char[][] requestGraph = requestImage.getGraph();
-        int pixelMatches = 0;
-        
-        //TODO: count backwards and return when the incorrect pixels is under threshold
-        
-        for (int perfectY = 0; perfectY < perfectImage.getHeight(); perfectY++) {
-            for (int perfectX = 0; perfectX < perfectImage.getWidth(); perfectX++) {
+        int remainingThreshold = perfectImage.getTotalPixels();
+
+        for (int perfectY = 0; perfectY < perfectImage.getHeight() && remainingThreshold > minimumThreshold; perfectY++) {
+            for (int perfectX = 0; perfectX < perfectImage.getWidth() && remainingThreshold > minimumThreshold; perfectX++) {
                 char requestPixel = requestGraph[requestY + perfectY][requestX + perfectX];
                 char perfectPixel = perfectGraph[perfectY][perfectX];
-                pixelMatches += requestPixel == perfectPixel ? 1 : 0;
+                remainingThreshold -= requestPixel == perfectPixel ? 0 : 1;
             }
         }
 
-        return pixelMatches > FINAL_IMAGE_THRESH_HOLD;
+        return remainingThreshold > minimumThreshold;
     }
     
     private int getFinalScanThreshold(Image image){
