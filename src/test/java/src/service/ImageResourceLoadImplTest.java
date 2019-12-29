@@ -12,10 +12,6 @@ import src.model.exceptions.GenericReaderException;
 import src.service.impl.ImageConverterImpl;
 import src.service.impl.ImageResourceLoaderImpl;
 
-
-import java.nio.file.Files;
-import java.nio.file.Paths;
-
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
@@ -34,7 +30,7 @@ public class ImageResourceLoadImplTest {
     }
     
     @Test
-    public void testGetPerfectImage() throws Exception {
+    public void testGetPerfectImage(){
         Image expectedImage = getPerfectImage();
         when(imageConverter.convert(anyString())).thenReturn(expectedImage);
         Image image = imageResourceLoader.getPerfectImage(ImageType.CAT.getValue());
@@ -48,26 +44,19 @@ public class ImageResourceLoadImplTest {
                 .hasMessageContaining("Could not read file from path.");
     }
     
-    private Image getPerfectImage() throws Exception {
+    private Image getPerfectImage(){
         Image image = new Image();
-        image.setHeight(15);
-        image.setWidth(15);
+        image.setHeight(2);
+        image.setWidth(2);
         image.setGraph(getGraph());
         return image;
     }
     
     
-    private char[][] getGraph() throws Exception{
-        String projectDirectory = System.getProperty("user.dir");
-        String resourcePath = String.format("%s/src/test/resources/%s.txt", projectDirectory, ImageType.CAT.getValue());
-        String imageText = new String(Files.readAllBytes(Paths.get(resourcePath)));
-        String[] splitImage = imageText.split("\\n");
-        
-        char [][] graph = new char[15][];
-        for (int index = 0; index < 15; index++) {
-            graph[index] = String.format("%-15s", splitImage[index], ' ').toCharArray();
-        }
-        
+    private char[][] getGraph() {
+        char[][] graph = new char[2][2];
+        graph[0] = ("++").toCharArray();
+        graph[1] = ("++").toCharArray();
         return graph;
     }
 }
