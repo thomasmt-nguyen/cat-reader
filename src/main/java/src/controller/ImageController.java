@@ -12,6 +12,7 @@ import src.dto.response.MatchImageResponse;
 import src.model.Match;
 import src.service.impl.ImageServiceImpl;
 
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 @RestController
@@ -28,7 +29,8 @@ public class ImageController {
     }
 
     @PostMapping(value = "image/match/{type}")
-    public MatchImageResponse findMatches(@RequestBody String requestedImageBody, @PathVariable("type") String requestedType) {
+    public MatchImageResponse findMatches(@NotEmpty @RequestBody String requestedImageBody, 
+                                          @PathVariable("type") String requestedType) {
         logger.info("Scanning requested image");
         List<Match> matches = imageService.process(requestedImageBody, requestedType);
         logger.info("Finished scanning requested image");

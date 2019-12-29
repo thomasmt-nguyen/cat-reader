@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import src.dto.response.ErrorResponse;
@@ -26,8 +27,19 @@ public class ExceptionHandlerController {
         logger.error("Error: exception={}", exception.getMessage());
         return error(errorResponse);
     }
+    
+    @ExceptionHandler({HttpMessageNotReadableException.class})
+    public ResponseEntity<ErrorResponse> handleHttpMessageNotReadableException(Exception exception) {
+        ErrorResponse errorResponse = ErrorResponse.builder()
+                .message(exception.getMessage())
+                .errorCode(ErrorCode.BAD_REQUEST)
+                .httpStatus(HttpStatus.BAD_REQUEST)
+                .build();
 
-
+        logger.error("Error: exception={}", exception.getMessage());
+        return error(errorResponse);
+    }
+    
     @ExceptionHandler({GenericReaderException.class})
     public ResponseEntity<ErrorResponse> handleGenericException(GenericReaderException exception) {
 
@@ -40,6 +52,7 @@ public class ExceptionHandlerController {
                 break;
             case READ_FILE_ERROR:
             case INTERNAL_SERVER_ERROR:
+            case EMPTY_IMAGE_TEXT:    
             default:
                 httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
                 break;

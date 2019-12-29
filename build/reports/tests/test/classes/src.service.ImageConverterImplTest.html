@@ -3,17 +3,17 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <meta http-equiv="x-ua-compatible" content="IE=edge"/>
-<title>Test results - Class src.service.ImageResourceLoadImplTest</title>
+<title>Test results - Class src.service.ImageConverterImplTest</title>
 <link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
 <link href="../css/style.css" rel="stylesheet" type="text/css"/>
 <script src="../js/report.js" type="text/javascript"></script>
 </head>
 <body>
 <div id="content">
-<h1>Class src.service.ImageResourceLoadImplTest</h1>
+<h1>Class src.service.ImageConverterImplTest</h1>
 <div class="breadcrumbs">
 <a href="../index.html">all</a> &gt; 
-<a href="../packages/src.service.html">src.service</a> &gt; ImageResourceLoadImplTest</div>
+<a href="../packages/src.service.html">src.service</a> &gt; ImageConverterImplTest</div>
 <div id="summary">
 <table>
 <tr>
@@ -23,7 +23,7 @@
 <tr>
 <td>
 <div class="infoBox" id="tests">
-<div class="counter">2</div>
+<div class="counter">6</div>
 <p>tests</p>
 </div>
 </td>
@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.056s</div>
+<div class="counter">0.010s</div>
 <p>duration</p>
 </div>
 </td>
@@ -63,6 +63,9 @@
 <li>
 <a href="#tab0">Tests</a>
 </li>
+<li>
+<a href="#tab1">Standard output</a>
+</li>
 </ul>
 <div id="tab0" class="tab">
 <h2>Tests</h2>
@@ -75,16 +78,46 @@
 </tr>
 </thead>
 <tr>
-<td class="success">testException</td>
-<td class="success">0.046s</td>
+<td class="success">testConvert</td>
+<td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
-<td class="success">testGetPerfectImage</td>
-<td class="success">0.010s</td>
+<td class="success">testEmptyScan</td>
+<td class="success">0.001s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">testEmptyScanNull</td>
+<td class="success">0.002s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">testSingleLineImage</td>
+<td class="success">0s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">testSinglePixel</td>
+<td class="success">0.001s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">testWhiteSpacesCenter</td>
+<td class="success">0.006s</td>
 <td class="success">passed</td>
 </tr>
 </table>
+</div>
+<div id="tab1" class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>10:18:38.882 [Test worker] INFO src.service.impl.ImageConverterImpl - Successfully converted requested image body. width=2.0 height=2.0
+10:18:38.886 [Test worker] INFO src.service.impl.ImageConverterImpl - Successfully converted requested image body. width=2.0 height=1.0
+10:18:38.887 [Test worker] INFO src.service.impl.ImageConverterImpl - Successfully converted requested image body. width=3.0 height=3.0
+10:18:38.888 [Test worker] INFO src.service.impl.ImageConverterImpl - Successfully converted requested image body. width=1.0 height=1.0
+</pre>
+</span>
 </div>
 </div>
 <div id="footer">

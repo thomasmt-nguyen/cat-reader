@@ -1,0 +1,5 @@
+ˆ10:18:38.882 [Test worker] INFO src.service.impl.ImageConverterImpl - Successfully converted requested image body. width=2.0 height=2.0
+ˆ10:18:38.886 [Test worker] INFO src.service.impl.ImageConverterImpl - Successfully converted requested image body. width=2.0 height=1.0
+	ˆ10:18:38.887 [Test worker] INFO src.service.impl.ImageConverterImpl - Successfully converted requested image body. width=3.0 height=3.0
+
+ˆ10:18:38.888 [Test worker] INFO src.service.impl.ImageConverterImpl - Successfully converted requested image body. width=1.0 height=1.0
