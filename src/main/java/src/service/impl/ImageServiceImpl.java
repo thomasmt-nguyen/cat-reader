@@ -41,7 +41,7 @@ public class ImageServiceImpl implements ImageService {
         Image perfectImage = imageResourceLoader.getPerfectImage(imageType);
         validateRequestImage(requestImage, perfectImage);
 
-        return scan(requestImage, perfectImage);
+        return findImage(requestImage, perfectImage);
     }
 
     private ImageType translateImageType(String type) {
@@ -64,7 +64,7 @@ public class ImageServiceImpl implements ImageService {
         }
     }
     
-    private List<Match> scan(Image requestImage, Image perfectImage) {
+    private List<Match> findImage(Image requestImage, Image perfectImage) {
         
         List<Match> matchLocations = new ArrayList<>();
         final int minimumThreshold = calculateAcceptableThreshold(perfectImage);

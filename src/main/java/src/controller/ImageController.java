@@ -27,8 +27,8 @@ public class ImageController {
         this.imageService = imageService;
     }
 
-    @PostMapping(value = "image/scan/{type}")
-    public MatchImageResponse scanImage(@RequestBody String requestedImageBody, @PathVariable("type") String requestedType) {
+    @PostMapping(value = "image/match/{type}")
+    public MatchImageResponse findMatches(@RequestBody String requestedImageBody, @PathVariable("type") String requestedType) {
         logger.info("Scanning requested image");
         List<Match> matches = imageService.process(requestedImageBody, requestedType);
         logger.info("Finished scanning requested image");
