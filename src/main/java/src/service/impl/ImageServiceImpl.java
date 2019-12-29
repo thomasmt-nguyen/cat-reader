@@ -38,7 +38,7 @@ public class ImageServiceImpl implements ImageService {
 
         ImageType imageType = translateImageType(requestedImageType);
         Image requestImage = imageConverter.convert(requestedImageBody);
-        Image perfectImage = imageResourceLoader.getPerfectImage(imageType);
+        Image perfectImage = imageResourceLoader.getPerfectImage(imageType.getValue());
         validateRequestImage(requestImage, perfectImage);
 
         return findImage(requestImage, perfectImage);

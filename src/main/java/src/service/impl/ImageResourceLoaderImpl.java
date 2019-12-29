@@ -19,11 +19,11 @@ public class ImageResourceLoaderImpl implements ImageResourceLoader {
     private ImageConverter imageConverter;
 
     @Autowired
-    ImageResourceLoaderImpl(ImageConverterImpl imageConverter) {
+    public ImageResourceLoaderImpl(ImageConverterImpl imageConverter) {
         this.imageConverter = imageConverter;
     }
 
-    public Image getPerfectImage(ImageType type) {
+    public Image getPerfectImage(String type) {
         String resourcePath = getResourcePath(type);
         String imageText = readFile(resourcePath);
         return imageConverter.convert(imageText);
@@ -43,9 +43,9 @@ public class ImageResourceLoaderImpl implements ImageResourceLoader {
         }
     }
 
-    private String getResourcePath(ImageType type) {
+    private String getResourcePath(String type) {
         String projectDirectory = System.getProperty("user.dir");
-        String resourcePath = String.format("%s/src/main/resources/images/%s.txt", projectDirectory, type.getValue());
+        String resourcePath = String.format("%s/src/main/resources/images/%s.txt", projectDirectory, type);
         return resourcePath;
     }
 }
