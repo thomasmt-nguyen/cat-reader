@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import src.dto.response.ScanImageResponse;
-import src.model.Coordinate;
+import src.model.Match;
 import src.service.impl.ImageServiceImpl;
 
 import java.util.List;
@@ -30,10 +30,10 @@ public class ImageController {
     @PostMapping(value = "image/scan/{type}")
     public ScanImageResponse scanImage(@RequestBody String requestedImageBody, @PathVariable("type") String requestedType) {
         logger.info("Scanning requested image");
-        List<Coordinate> coordinates = imageService.process(requestedImageBody, requestedType);
+        List<Match> matches = imageService.process(requestedImageBody, requestedType);
         logger.info("Finished scanning requested image");
         ScanImageResponse response = new ScanImageResponse();
-        response.setCoordinates(coordinates);
+        response.setMatches(matches);
         return response;
     }
 }

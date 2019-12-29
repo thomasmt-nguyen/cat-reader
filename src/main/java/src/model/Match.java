@@ -5,7 +5,8 @@ import lombok.Data;
 
 @Data
 @Builder
-public class Coordinate {
+public class Match {
     private int x;
     private int y;
+    double confidence;
 }

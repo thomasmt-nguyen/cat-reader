@@ -5,10 +5,10 @@ import lombok.Data;
 @Data
 public class Image {
     private char [][] graph;
-    private int width;
-    private int height;
+    private double width;
+    private double height;
 
-    public int getTotalPixels() {
+    public double getTotalPixels() {
         return width * height;
     }
 }

@@ -6,13 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import src.enums.ErrorCode;
 import src.enums.ImageType;
-import src.model.Coordinate;
+import src.model.Match;
 import src.model.Image;
 import src.model.exceptions.GenericReaderException;
 import src.service.ImageConverter;
 import src.service.ImageResourceLoader;
 import src.service.ImageService;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +34,7 @@ public class ImageServiceImpl implements ImageService {
         this.imageResourceLoader = imageResourceLoader;
     }
 
-    public List<Coordinate> process(String requestedImageBody, String requestedImageType) {
+    public List<Match> process(String requestedImageBody, String requestedImageType) {
 
         ImageType imageType = translateImageType(requestedImageType);
         Image requestImage = imageConverter.convert(requestedImageBody);
@@ -62,37 +64,44 @@ public class ImageServiceImpl implements ImageService {
         }
     }
     
-    private List<Coordinate> scan(Image requestImage, Image perfectImage) {
+    private List<Match> scan(Image requestImage, Image perfectImage) {
         
-        List<Coordinate> matchLocations = new ArrayList<>();
+        List<Match> matchLocations = new ArrayList<>();
+        final int minimumThreshold = calculateAcceptableThreshold(perfectImage);
 
         for (int requestY = 0; requestY < requestImage.getHeight() - perfectImage.getHeight(); requestY++) {
             for (int requestX = 0; requestX < requestImage.getWidth() - perfectImage.getWidth(); requestX++) {
-                if (isMatchScan(requestX, requestY, requestImage, perfectImage)) {
-                    Coordinate coordinate = Coordinate.builder()
+                double matchedPixels = getMatchedPixels(requestX, requestY, requestImage, perfectImage, minimumThreshold);
+                if (matchedPixels > minimumThreshold) {
+                    double matchPercentage = BigDecimal.valueOf(matchedPixels / perfectImage.getTotalPixels())
+                            .setScale(2, RoundingMode.DOWN)
+                            .doubleValue();
+
+                    Match match = Match.builder()
                             .x(requestX)
                             .y(requestY)
+                            .confidence(matchPercentage)
                             .build();
 
-                    logger.info("Successfully matched image x-cmoordinate={} y-coordinate={}", requestX, requestY);
-                    matchLocations.add(coordinate);
+                    matchLocations.add(match);
                 }
             }
         }
 
         if (matchLocations.isEmpty()) {
             logger.info("No successful matches for requested image");
+        } else {
+            logger.info("Successfully matched images matches={}", matchLocations);
         }
         
         return matchLocations;
     }
     
-    private boolean isMatchScan(int requestX, int requestY, Image requestImage, Image perfectImage) {
+    private double getMatchedPixels(int requestX, int requestY, Image requestImage, Image perfectImage, int minimumThreshold) {
 
-        final int minimumThreshold = calculateAcceptableThreshold(perfectImage);
         char[][] perfectGraph = perfectImage.getGraph();
         char[][] requestGraph = requestImage.getGraph();
-        int remainingThreshold = perfectImage.getTotalPixels();
+        double remainingThreshold = perfectImage.getTotalPixels();
 
         for (int perfectY = 0; perfectY < perfectImage.getHeight() && remainingThreshold > minimumThreshold; perfectY++) {
             for (int perfectX = 0; perfectX < perfectImage.getWidth() && remainingThreshold > minimumThreshold; perfectX++) {
@@ -102,7 +111,7 @@ public class ImageServiceImpl implements ImageService {
             }
         }
 
-        return remainingThreshold > minimumThreshold;
+        return remainingThreshold;
     }
     
     private int calculateAcceptableThreshold(Image image){

@@ -39,6 +39,7 @@ public class ExceptionHandlerController {
                 httpStatus = HttpStatus.BAD_REQUEST;
                 break;
             case READ_FILE_ERROR:
+            case INTERNAL_SERVER_ERROR:
             default:
                 httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
                 break;
