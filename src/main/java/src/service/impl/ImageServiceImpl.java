@@ -28,8 +28,7 @@ public class ImageServiceImpl implements ImageService {
     private ImageResourceLoader imageResourceLoader;
 
     @Autowired
-    ImageServiceImpl(ImageConverterImpl imageConverter,
-                     ImageResourceLoaderImpl imageResourceLoader) {
+    public ImageServiceImpl(ImageConverterImpl imageConverter, ImageResourceLoaderImpl imageResourceLoader) {
         this.imageConverter = imageConverter;
         this.imageResourceLoader = imageResourceLoader;
     }
@@ -69,8 +68,8 @@ public class ImageServiceImpl implements ImageService {
         List<Match> matchLocations = new ArrayList<>();
         final int minimumThreshold = calculateAcceptableThreshold(perfectImage);
 
-        for (int requestY = 0; requestY < requestImage.getHeight() - perfectImage.getHeight(); requestY++) {
-            for (int requestX = 0; requestX < requestImage.getWidth() - perfectImage.getWidth(); requestX++) {
+        for (int requestY = 0; requestY <= requestImage.getHeight() - perfectImage.getHeight(); requestY++) {
+            for (int requestX = 0; requestX <= requestImage.getWidth() - perfectImage.getWidth(); requestX++) {
                 double matchedPixels = getMatchedPixels(requestX, requestY, requestImage, perfectImage, minimumThreshold);
                 if (matchedPixels > minimumThreshold) {
                     double matchPercentage = BigDecimal.valueOf((matchedPixels / perfectImage.getTotalPixels()) * 100)

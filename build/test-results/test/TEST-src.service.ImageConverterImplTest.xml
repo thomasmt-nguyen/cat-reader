@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="src.service.ImageConverterImplTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2019-12-29T18:18:38" hostname="SDGL160adabd1.corp.intuit.net" time="0.01">
+<testsuite name="src.service.ImageConverterImplTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2019-12-29T19:40:16" hostname="SDGL160adabd1.corp.intuit.net" time="0.004">
   <properties/>
   <testcase name="testEmptyScanNull" classname="src.service.ImageConverterImplTest" time="0.002"/>
-  <testcase name="testWhiteSpacesCenter" classname="src.service.ImageConverterImplTest" time="0.006"/>
+  <testcase name="testWhiteSpacesCenter" classname="src.service.ImageConverterImplTest" time="0.001"/>
   <testcase name="testSingleLineImage" classname="src.service.ImageConverterImplTest" time="0.0"/>
-  <testcase name="testEmptyScan" classname="src.service.ImageConverterImplTest" time="0.001"/>
+  <testcase name="testEmptyScan" classname="src.service.ImageConverterImplTest" time="0.0"/>
   <testcase name="testConvert" classname="src.service.ImageConverterImplTest" time="0.0"/>
-  <testcase name="testSinglePixel" classname="src.service.ImageConverterImplTest" time="0.001"/>
-  <system-out><![CDATA[10:18:38.882 [Test worker] INFO src.service.impl.ImageConverterImpl - Successfully converted requested image body. width=2.0 height=2.0
-10:18:38.886 [Test worker] INFO src.service.impl.ImageConverterImpl - Successfully converted requested image body. width=2.0 height=1.0
-10:18:38.887 [Test worker] INFO src.service.impl.ImageConverterImpl - Successfully converted requested image body. width=3.0 height=3.0
-10:18:38.888 [Test worker] INFO src.service.impl.ImageConverterImpl - Successfully converted requested image body. width=1.0 height=1.0
+  <testcase name="testSinglePixel" classname="src.service.ImageConverterImplTest" time="0.0"/>
+  <system-out><![CDATA[11:40:16.722 [Test worker] INFO src.service.impl.ImageConverterImpl - Successfully converted requested image body. width=2.0 height=2.0
+11:40:16.722 [Test worker] INFO src.service.impl.ImageConverterImpl - Successfully converted requested image body. width=2.0 height=1.0
+11:40:16.723 [Test worker] INFO src.service.impl.ImageConverterImpl - Successfully converted requested image body. width=3.0 height=3.0
+11:40:16.723 [Test worker] INFO src.service.impl.ImageConverterImpl - Successfully converted requested image body. width=1.0 height=1.0
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

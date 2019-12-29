@@ -1,5 +1,7 @@
-ˆ10:18:38.882 [Test worker] INFO src.service.impl.ImageConverterImpl - Successfully converted requested image body. width=2.0 height=2.0
-ˆ10:18:38.886 [Test worker] INFO src.service.impl.ImageConverterImpl - Successfully converted requested image body. width=2.0 height=1.0
-	ˆ10:18:38.887 [Test worker] INFO src.service.impl.ImageConverterImpl - Successfully converted requested image body. width=3.0 height=3.0
-
-ˆ10:18:38.888 [Test worker] INFO src.service.impl.ImageConverterImpl - Successfully converted requested image body. width=1.0 height=1.0
+¯11:40:16.699 [Test worker] INFO src.service.impl.ImageServiceImpl - Successfully matched images matches=[Match(x=0, y=0, confidence=100.0), Match(x=1, y=1, confidence=100.0)]
+Œ11:40:16.704 [Test worker] INFO src.service.impl.ImageServiceImpl - Successfully matched images matches=[Match(x=0, y=0, confidence=100.0)]
+Œ11:40:16.705 [Test worker] INFO src.service.impl.ImageServiceImpl - Successfully matched images matches=[Match(x=0, y=0, confidence=88.88)]
+ˆ11:40:16.722 [Test worker] INFO src.service.impl.ImageConverterImpl - Successfully converted requested image body. width=2.0 height=2.0
+ˆ11:40:16.722 [Test worker] INFO src.service.impl.ImageConverterImpl - Successfully converted requested image body. width=2.0 height=1.0
+ˆ11:40:16.723 [Test worker] INFO src.service.impl.ImageConverterImpl - Successfully converted requested image body. width=3.0 height=3.0
+ˆ11:40:16.723 [Test worker] INFO src.service.impl.ImageConverterImpl - Successfully converted requested image body. width=1.0 height=1.0

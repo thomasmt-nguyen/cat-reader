@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="src.service.ImageServiceImplTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2019-12-29T19:40:16" hostname="SDGL160adabd1.corp.intuit.net" time="0.046">
+  <properties/>
+  <testcase name="testException" classname="src.service.ImageServiceImplTest" time="0.035"/>
+  <testcase name="testNotValidSizeException" classname="src.service.ImageServiceImplTest" time="0.001"/>
+  <testcase name="testProcess" classname="src.service.ImageServiceImplTest" time="0.007"/>
+  <testcase name="testSameSizeShouldReturnOneMatch" classname="src.service.ImageServiceImplTest" time="0.001"/>
+  <testcase name="testNotValidTypeException" classname="src.service.ImageServiceImplTest" time="0.0"/>
+  <testcase name="testSameSizeShouldReturnOneMatchLarger" classname="src.service.ImageServiceImplTest" time="0.001"/>
+  <system-out><![CDATA[11:40:16.699 [Test worker] INFO src.service.impl.ImageServiceImpl - Successfully matched images matches=[Match(x=0, y=0, confidence=100.0), Match(x=1, y=1, confidence=100.0)]
+11:40:16.704 [Test worker] INFO src.service.impl.ImageServiceImpl - Successfully matched images matches=[Match(x=0, y=0, confidence=100.0)]
+11:40:16.705 [Test worker] INFO src.service.impl.ImageServiceImpl - Successfully matched images matches=[Match(x=0, y=0, confidence=88.88)]
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
