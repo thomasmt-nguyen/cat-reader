@@ -3,7 +3,6 @@ package src.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import src.enums.ErrorCode;
-import src.enums.ImageType;
 import src.model.Image;
 import src.model.exceptions.GenericReaderException;
 import src.service.ImageConverter;

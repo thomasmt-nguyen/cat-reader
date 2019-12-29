@@ -8,6 +8,7 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import src.enums.ImageType;
 import src.model.Image;
+import src.model.exceptions.GenericReaderException;
 import src.service.impl.ImageConverterImpl;
 import src.service.impl.ImageResourceLoaderImpl;
 
@@ -15,6 +16,7 @@ import src.service.impl.ImageResourceLoaderImpl;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
@@ -25,7 +27,6 @@ public class ImageResourceLoadImplTest {
     
     @Mock
     private ImageConverterImpl imageConverter;
-
     
     @Before
     public void setup() {
@@ -38,6 +39,13 @@ public class ImageResourceLoadImplTest {
         when(imageConverter.convert(anyString())).thenReturn(expectedImage);
         Image image = imageResourceLoader.getPerfectImage(ImageType.CAT.getValue());
         Assert.assertEquals(image, expectedImage);
+    }
+
+    @Test
+    public void testException() {
+        assertThatThrownBy(() -> imageResourceLoader.getPerfectImage("dog"))
+                .isInstanceOf(GenericReaderException.class)
+                .hasMessageContaining("Could not read file from path.");
     }
     
     private Image getPerfectImage() throws Exception {
