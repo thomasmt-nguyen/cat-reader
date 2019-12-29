@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import src.dto.response.ScanImageResponse;
+import src.dto.response.MatchImageResponse;
 import src.model.Match;
 import src.service.impl.ImageServiceImpl;
 
@@ -28,12 +28,17 @@ public class ImageController {
     }
 
     @PostMapping(value = "image/scan/{type}")
-    public ScanImageResponse scanImage(@RequestBody String requestedImageBody, @PathVariable("type") String requestedType) {
+    public MatchImageResponse scanImage(@RequestBody String requestedImageBody, @PathVariable("type") String requestedType) {
         logger.info("Scanning requested image");
         List<Match> matches = imageService.process(requestedImageBody, requestedType);
         logger.info("Finished scanning requested image");
-        ScanImageResponse response = new ScanImageResponse();
+        MatchImageResponse response = new MatchImageResponse();
         response.setMatches(matches);
+        response.setMessage(buildMessage(matches));
         return response;
+    }
+
+    private String buildMessage(List<Match> matches) {
+        return String.format("Found %d matches", matches.size());
     }
 }

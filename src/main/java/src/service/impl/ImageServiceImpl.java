@@ -73,7 +73,7 @@ public class ImageServiceImpl implements ImageService {
             for (int requestX = 0; requestX < requestImage.getWidth() - perfectImage.getWidth(); requestX++) {
                 double matchedPixels = getMatchedPixels(requestX, requestY, requestImage, perfectImage, minimumThreshold);
                 if (matchedPixels > minimumThreshold) {
-                    double matchPercentage = BigDecimal.valueOf(matchedPixels / perfectImage.getTotalPixels())
+                    double matchPercentage = BigDecimal.valueOf((matchedPixels / perfectImage.getTotalPixels()) * 100)
                             .setScale(2, RoundingMode.DOWN)
                             .doubleValue();
 

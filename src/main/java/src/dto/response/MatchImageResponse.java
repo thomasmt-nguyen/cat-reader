@@ -6,6 +6,7 @@ import src.model.Match;
 import java.util.List;
 
 @Data
-public class ScanImageResponse {
+public class MatchImageResponse {
+    String message;
     List<Match> matches;
 }

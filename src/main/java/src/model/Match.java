@@ -8,5 +8,5 @@ import lombok.Data;
 public class Match {
     private int x;
     private int y;
-    double confidence;
+    private double confidence;
 }
