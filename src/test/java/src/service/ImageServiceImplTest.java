@@ -18,8 +18,6 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.doThrow;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.verifyZeroInteractions;
 import static org.mockito.Mockito.when;
@@ -87,11 +85,26 @@ public class ImageServiceImplTest {
     }
     
     @Test
-    public void testNotValidSizeException() {
+    public void testNotValidSizeHeightException() {
 
         when(imageConverter.convert(anyString())).thenReturn(getSingleLineRequestImage());
         when(resourceLoader.getPerfectImage(anyString())).thenReturn(getSquareImage());
         
+        assertThatThrownBy(()-> imageService.process("++", "CAT"))
+                .isInstanceOf(GenericReaderException.class)
+                .hasMessageContaining("Request body is smaller than the requested scan image");
+    }
+
+    @Test
+    public void testNotValidSizeWidthException() {
+        
+        Image image = getSingleLineRequestImage();
+        image.setHeight(3);
+        image.setWidth(1);
+
+        when(imageConverter.convert(anyString())).thenReturn(getSingleLineRequestImage());
+        when(resourceLoader.getPerfectImage(anyString())).thenReturn(getSquareImage());
+
         assertThatThrownBy(()-> imageService.process("++", "CAT"))
                 .isInstanceOf(GenericReaderException.class)
                 .hasMessageContaining("Request body is smaller than the requested scan image");
@@ -108,7 +121,7 @@ public class ImageServiceImplTest {
     }
 
     @Test
-    public void testSameSizeShouldReturnOneMatchLarger() {
+    public void testShouldReturnOneMatchLarger() {
         when(imageConverter.convert(anyString())).thenReturn(getRequestImage2());
         when(resourceLoader.getPerfectImage(anyString())).thenReturn(getLargerSquareImage());
 
