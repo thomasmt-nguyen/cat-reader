@@ -15,7 +15,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import src.Application;
 import src.dto.response.MatchImageResponse;
-import src.model.Match;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -38,9 +37,12 @@ public class FindImageTests {
     @Test
     public void testFindImage()  {
         String body = getTestRequestImage();
-        MatchImageResponse matchResponse = post(MATCH_IMAGE_URL, body);
-        
         int expectedMatchSize = 6;
+
+        logger.info("Making call to image match url");
+        MatchImageResponse matchResponse = post(MATCH_IMAGE_URL, body);
+
+        logger.info("Comparing results");
         Assert.assertEquals(expectedMatchSize, matchResponse.getMatches().size());
         Assert.assertEquals("Found 6 matches", matchResponse.getMessage());
     }

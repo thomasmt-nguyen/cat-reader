@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="src.service.ImageServiceImplTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2019-12-30T04:10:31" hostname="SDGL160adabd1.corp.intuit.net" time="0.123">
+<testsuite name="src.service.ImageServiceImplTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2019-12-30T17:45:31" hostname="SDGL160adabd1.corp.intuit.net" time="0.1">
   <properties/>
-  <testcase name="testException" classname="src.service.ImageServiceImplTest" time="0.116"/>
+  <testcase name="testException" classname="src.service.ImageServiceImplTest" time="0.093"/>
   <testcase name="testNotValidSizeHeightException" classname="src.service.ImageServiceImplTest" time="0.001"/>
   <testcase name="testProcess" classname="src.service.ImageServiceImplTest" time="0.001"/>
   <testcase name="testSameSizeShouldReturnOneMatch" classname="src.service.ImageServiceImplTest" time="0.001"/>
   <testcase name="testNotValidTypeException" classname="src.service.ImageServiceImplTest" time="0.001"/>
   <testcase name="testShouldReturnOneMatchLarger" classname="src.service.ImageServiceImplTest" time="0.001"/>
   <testcase name="testNotValidSizeWidthException" classname="src.service.ImageServiceImplTest" time="0.001"/>
-  <system-out><![CDATA[2019-12-29 20:10:31.452  INFO 56967 --- [    Test worker] src.service.impl.ImageServiceImpl        : Successfully matched images matches=[Match(x=0, y=0, confidence=100.0), Match(x=1, y=1, confidence=100.0)]
-2019-12-29 20:10:31.453  INFO 56967 --- [    Test worker] src.service.impl.ImageServiceImpl        : Successfully matched images matches=[Match(x=0, y=0, confidence=100.0)]
-2019-12-29 20:10:31.454  INFO 56967 --- [    Test worker] src.service.impl.ImageServiceImpl        : Successfully matched images matches=[Match(x=0, y=0, confidence=88.88)]
+  <system-out><![CDATA[2019-12-30 09:45:31.797  INFO 73775 --- [    Test worker] src.service.impl.ImageServiceImpl        : Successfully matched images matches=[Match(x=0, y=0, confidence=100.0), Match(x=1, y=1, confidence=100.0)]
+2019-12-30 09:45:31.798  INFO 73775 --- [    Test worker] src.service.impl.ImageServiceImpl        : Successfully matched images matches=[Match(x=0, y=0, confidence=100.0)]
+2019-12-30 09:45:31.800  INFO 73775 --- [    Test worker] src.service.impl.ImageServiceImpl        : Successfully matched images matches=[Match(x=0, y=0, confidence=88.88)]
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
