@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="src.service.ImageResourceLoadImplTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2019-12-30T02:42:50" hostname="SDGL160adabd1.corp.intuit.net" time="0.002">
+<testsuite name="src.service.ImageResourceLoadImplTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2019-12-30T04:10:31" hostname="SDGL160adabd1.corp.intuit.net" time="0.002">
   <properties/>
   <testcase name="testException" classname="src.service.ImageResourceLoadImplTest" time="0.001"/>
   <testcase name="testGetPerfectImage" classname="src.service.ImageResourceLoadImplTest" time="0.001"/>
