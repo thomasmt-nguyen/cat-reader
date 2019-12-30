@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.070s</div>
+<div class="counter">0.061s</div>
 <p>duration</p>
 </div>
 </td>
@@ -79,7 +79,7 @@
 </thead>
 <tr>
 <td class="success">testExceptionThrown</td>
-<td class="success">0.053s</td>
+<td class="success">0.042s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -89,7 +89,7 @@
 </tr>
 <tr>
 <td class="success">testFindZeroMatches</td>
-<td class="success">0.004s</td>
+<td class="success">0.006s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -97,9 +97,9 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>2019-12-30 09:45:30.871  INFO 73775 --- [    Test worker] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [src.controller.ImageControllerTest]: no resource found for suffixes {-context.xml, Context.groovy}.
-2019-12-30 09:45:30.886  INFO 73775 --- [    Test worker] .b.t.a.w.s.WebMvcTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
-2019-12-30 09:45:30.887  INFO 73775 --- [    Test worker] .b.t.a.w.s.WebMvcTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@4b302a15, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@6198ac4a, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@7053cf4f, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@3db2e504, org.springframework.test.context.support.DirtiesContextTestExecutionListener@77980025, org.springframework.test.context.event.EventPublishingTestExecutionListener@53c60860, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@3d018ce0, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@1731d481, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@201f776a, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@4379fe01, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@722e0c02]
+<pre>2019-12-30 10:43:57.010  INFO 78469 --- [    Test worker] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [src.controller.ImageControllerTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+2019-12-30 10:43:57.024  INFO 78469 --- [    Test worker] .b.t.a.w.s.WebMvcTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+2019-12-30 10:43:57.026  INFO 78469 --- [    Test worker] .b.t.a.w.s.WebMvcTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@1baac0c9, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@4b302a15, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@6198ac4a, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@7053cf4f, org.springframework.test.context.support.DirtiesContextTestExecutionListener@3db2e504, org.springframework.test.context.event.EventPublishingTestExecutionListener@77980025, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@53c60860, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@3d018ce0, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@1731d481, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@201f776a, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@4379fe01]
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -109,19 +109,19 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::        (v2.2.2.RELEASE)
 
-2019-12-30 09:45:30.911  INFO 73775 --- [    Test worker] src.controller.ImageControllerTest       : Starting ImageControllerTest on SDGL160adabd1.corp.intuit.net with PID 73775 (started by tnguyen38 in /Users/tnguyen38/Developer/github/catReader)
-2019-12-30 09:45:30.912  INFO 73775 --- [    Test worker] src.controller.ImageControllerTest       : No active profile set, falling back to default profiles: default
-2019-12-30 09:45:31.466  INFO 73775 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2019-12-30 09:45:31.594  INFO 73775 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
-2019-12-30 09:45:31.595  INFO 73775 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
-2019-12-30 09:45:31.596  INFO 73775 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
-2019-12-30 09:45:31.615  INFO 73775 --- [    Test worker] src.controller.ImageControllerTest       : Started ImageControllerTest in 0.721 seconds (JVM running for 4.163)
-2019-12-30 09:45:31.650  INFO 73775 --- [    Test worker] src.controller.ImageController           : Scanning requested image
-2019-12-30 09:45:31.657 ERROR 73775 --- [    Test worker] s.controller.ExceptionHandlerController  : Error: errorCode=INTERNAL_SERVER_ERROR, errorMessage=Error Message
-2019-12-30 09:45:31.679  INFO 73775 --- [    Test worker] src.controller.ImageController           : Scanning requested image
-2019-12-30 09:45:31.679  INFO 73775 --- [    Test worker] src.controller.ImageController           : Finished scanning requested image
-2019-12-30 09:45:31.688  INFO 73775 --- [    Test worker] src.controller.ImageController           : Scanning requested image
-2019-12-30 09:45:31.689  INFO 73775 --- [    Test worker] src.controller.ImageController           : Finished scanning requested image
+2019-12-30 10:43:57.052  INFO 78469 --- [    Test worker] src.controller.ImageControllerTest       : Starting ImageControllerTest on SDGL160adabd1.corp.intuit.net with PID 78469 (started by tnguyen38 in /Users/tnguyen38/Developer/github/catReader)
+2019-12-30 10:43:57.053  INFO 78469 --- [    Test worker] src.controller.ImageControllerTest       : No active profile set, falling back to default profiles: default
+2019-12-30 10:43:57.568  INFO 78469 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-12-30 10:43:57.685  INFO 78469 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-12-30 10:43:57.685  INFO 78469 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-12-30 10:43:57.687  INFO 78469 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 2 ms
+2019-12-30 10:43:57.700  INFO 78469 --- [    Test worker] src.controller.ImageControllerTest       : Started ImageControllerTest in 0.667 seconds (JVM running for 4.032)
+2019-12-30 10:43:57.727  INFO 78469 --- [    Test worker] src.controller.ImageController           : Searching requested image
+2019-12-30 10:43:57.732 ERROR 78469 --- [    Test worker] s.controller.ExceptionHandlerController  : Error: errorCode=INTERNAL_SERVER_ERROR, errorMessage=Error Message
+2019-12-30 10:43:57.751  INFO 78469 --- [    Test worker] src.controller.ImageController           : Searching requested image
+2019-12-30 10:43:57.751  INFO 78469 --- [    Test worker] src.controller.ImageController           : Finished searching for image
+2019-12-30 10:43:57.762  INFO 78469 --- [    Test worker] src.controller.ImageController           : Searching requested image
+2019-12-30 10:43:57.763  INFO 78469 --- [    Test worker] src.controller.ImageController           : Finished searching for image
 </pre>
 </span>
 </div>
@@ -133,7 +133,7 @@
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 5.6.2</a> at Dec 30, 2019 9:45:31 AM</p>
+<a href="http://www.gradle.org">Gradle 5.6.2</a> at Dec 30, 2019 10:43:57 AM</p>
 </div>
 </div>
 </body>

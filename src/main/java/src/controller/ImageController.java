@@ -31,9 +31,9 @@ public class ImageController {
     @PostMapping(value = "image/match/{type}")
     public MatchImageResponse findMatches(@NotEmpty @RequestBody String requestedImageBody, 
                                           @PathVariable("type") String requestedType) {
-        logger.info("Scanning requested image");
+        logger.info("Searching requested image");
         List<Match> matches = imageService.process(requestedImageBody, requestedType);
-        logger.info("Finished scanning requested image");
+        logger.info("Finished searching for image");
         MatchImageResponse response = new MatchImageResponse();
         response.setMatches(matches);
         response.setMessage(buildMessage(matches));

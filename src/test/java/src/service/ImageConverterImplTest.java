@@ -36,14 +36,14 @@ public class ImageConverterImplTest {
     }
     
     @Test
-    public void testEmptyScan() {
+    public void testEmptyMatchSearch() {
         assertThatThrownBy(() -> imageConverter.convert(""))
                 .isInstanceOf(GenericReaderException.class)
                 .hasMessageContaining("Cannot convert an empty image");
     }
 
     @Test
-    public void testEmptyScanNull() {
+    public void testEmptyMatchSearchNull() {
         assertThatThrownBy(() -> imageConverter.convert(null))
                 .isInstanceOf(GenericReaderException.class)
                 .hasMessageContaining("Cannot convert an empty image");

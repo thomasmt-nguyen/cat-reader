@@ -78,7 +78,7 @@ public class ImageServiceImplTest {
     public void testNotValidTypeException() {
         assertThatThrownBy(()-> imageService.process(getImageRequestBody(), "dog"))
                 .isInstanceOf(GenericReaderException.class)
-                .hasMessageContaining("Invalid requested image scan type.");
+                .hasMessageContaining("Invalid requested image type.");
 
         verifyZeroInteractions(imageConverter);
         verifyZeroInteractions(resourceLoader);
@@ -92,7 +92,7 @@ public class ImageServiceImplTest {
         
         assertThatThrownBy(()-> imageService.process("++", "CAT"))
                 .isInstanceOf(GenericReaderException.class)
-                .hasMessageContaining("Request body is smaller than the requested scan image");
+                .hasMessageContaining("Request body is smaller than the requested search image");
     }
 
     @Test
@@ -107,7 +107,7 @@ public class ImageServiceImplTest {
 
         assertThatThrownBy(()-> imageService.process("++", "CAT"))
                 .isInstanceOf(GenericReaderException.class)
-                .hasMessageContaining("Request body is smaller than the requested scan image");
+                .hasMessageContaining("Request body is smaller than the requested search image");
     }
 
     @Test

@@ -49,7 +49,7 @@ public class ImageServiceImpl implements ImageService {
         } catch (IllegalArgumentException exception) {
             throw GenericReaderException.builder()
                     .errorCode(ErrorCode.INVALID_IMAGE_TYPE)
-                    .message(String.format("Invalid requested image scan type. imageType=%s", type))
+                    .message(String.format("Invalid requested image type. imageType=%s", type))
                     .build();
         }
     }
@@ -58,7 +58,7 @@ public class ImageServiceImpl implements ImageService {
         if (requestImage.getWidth() < perfectImage.getWidth() || requestImage.getHeight() < perfectImage.getHeight()) {
             throw GenericReaderException.builder()
                     .errorCode(ErrorCode.INVALID_IMAGE_SIZE)
-                    .message("Request body is smaller than the requested scan image")
+                    .message("Request body is smaller than the requested search image")
                     .build();
         }
     }
@@ -116,8 +116,8 @@ public class ImageServiceImpl implements ImageService {
     private int calculateAcceptableThreshold(Image image){
         double width = image.getWidth();
         double height = image.getHeight();
-        double FINAL_SCAN_THRESH_HOLD = .85;
-        return calculateThreshold(width, height, FINAL_SCAN_THRESH_HOLD);
+        double ACCEPTABLE_THRESH_HOLD = .85;
+        return calculateThreshold(width, height, ACCEPTABLE_THRESH_HOLD);
     }
     
     private int calculateThreshold(double width, double height, double threshold) {

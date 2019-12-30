@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="src.service.ImageConverterImplTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2019-12-30T17:45:31" hostname="SDGL160adabd1.corp.intuit.net" time="0.004">
+<testsuite name="src.service.ImageConverterImplTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2019-12-30T18:43:57" hostname="SDGL160adabd1.corp.intuit.net" time="0.003">
   <properties/>
-  <testcase name="testEmptyScanNull" classname="src.service.ImageConverterImplTest" time="0.001"/>
   <testcase name="testWhiteSpacesCenter" classname="src.service.ImageConverterImplTest" time="0.0"/>
   <testcase name="testSingleLineImage" classname="src.service.ImageConverterImplTest" time="0.001"/>
-  <testcase name="testEmptyScan" classname="src.service.ImageConverterImplTest" time="0.0"/>
-  <testcase name="testConvert" classname="src.service.ImageConverterImplTest" time="0.001"/>
-  <testcase name="testSinglePixel" classname="src.service.ImageConverterImplTest" time="0.0"/>
-  <system-out><![CDATA[2019-12-30 09:45:31.811  INFO 73775 --- [    Test worker] src.service.impl.ImageConverterImpl      : Successfully converted requested image body. width=2.0 height=2.0
-2019-12-30 09:45:31.811  INFO 73775 --- [    Test worker] src.service.impl.ImageConverterImpl      : Successfully converted requested image body. width=2.0 height=1.0
-2019-12-30 09:45:31.813  INFO 73775 --- [    Test worker] src.service.impl.ImageConverterImpl      : Successfully converted requested image body. width=3.0 height=3.0
-2019-12-30 09:45:31.813  INFO 73775 --- [    Test worker] src.service.impl.ImageConverterImpl      : Successfully converted requested image body. width=1.0 height=1.0
+  <testcase name="testConvert" classname="src.service.ImageConverterImplTest" time="0.0"/>
+  <testcase name="testEmptyMatchSearchNull" classname="src.service.ImageConverterImplTest" time="0.0"/>
+  <testcase name="testEmptyMatchSearch" classname="src.service.ImageConverterImplTest" time="0.0"/>
+  <testcase name="testSinglePixel" classname="src.service.ImageConverterImplTest" time="0.001"/>
+  <system-out><![CDATA[2019-12-30 10:43:57.872  INFO 78469 --- [    Test worker] src.service.impl.ImageConverterImpl      : Successfully converted requested image body. width=2.0 height=2.0
+2019-12-30 10:43:57.872  INFO 78469 --- [    Test worker] src.service.impl.ImageConverterImpl      : Successfully converted requested image body. width=2.0 height=1.0
+2019-12-30 10:43:57.873  INFO 78469 --- [    Test worker] src.service.impl.ImageConverterImpl      : Successfully converted requested image body. width=3.0 height=3.0
+2019-12-30 10:43:57.874  INFO 78469 --- [    Test worker] src.service.impl.ImageConverterImpl      : Successfully converted requested image body. width=1.0 height=1.0
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
