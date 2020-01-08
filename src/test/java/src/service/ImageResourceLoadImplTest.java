@@ -9,7 +9,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import src.enums.ImageType;
 import src.model.Image;
 import src.model.exceptions.GenericReaderException;
-import src.service.impl.ImageConverterImpl;
+import src.factory.impl.ImageFactoryImpl;
 import src.service.impl.ImageResourceLoaderImpl;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -22,7 +22,7 @@ public class ImageResourceLoadImplTest {
     ImageResourceLoaderImpl imageResourceLoader;
     
     @Mock
-    private ImageConverterImpl imageConverter;
+    private ImageFactoryImpl imageConverter;
     
     @Before
     public void setup() {
@@ -32,7 +32,7 @@ public class ImageResourceLoadImplTest {
     @Test
     public void testGetPerfectImage(){
         Image expectedImage = getPerfectImage();
-        when(imageConverter.convert(anyString())).thenReturn(expectedImage);
+        when(imageConverter.createImage(anyString())).thenReturn(expectedImage);
         Image image = imageResourceLoader.getPerfectImage(ImageType.CAT.getValue());
         Assert.assertEquals(image, expectedImage);
     }

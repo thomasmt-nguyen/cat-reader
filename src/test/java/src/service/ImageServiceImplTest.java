@@ -10,7 +10,7 @@ import src.enums.ErrorCode;
 import src.model.Image;
 import src.model.Match;
 import src.model.exceptions.GenericReaderException;
-import src.service.impl.ImageConverterImpl;
+import src.factory.impl.ImageFactoryImpl;
 import src.service.impl.ImageResourceLoaderImpl;
 import src.service.impl.ImageServiceImpl;
 
@@ -28,7 +28,7 @@ public class ImageServiceImplTest {
     private ImageServiceImpl imageService;
     
     @Mock
-    private ImageConverterImpl imageConverter;
+    private ImageFactoryImpl imageConverter;
     
     @Mock
     private ImageResourceLoaderImpl resourceLoader;
@@ -40,7 +40,7 @@ public class ImageServiceImplTest {
     
     @Test
     public void testProcess() {
-        when(imageConverter.convert(anyString())).thenReturn(getRequestImage());
+        when(imageConverter.createImage(anyString())).thenReturn(getRequestImage());
         when(resourceLoader.getPerfectImage(anyString())).thenReturn(getSquareImage());
         
         List<Match> matches = imageService.process(getImageRequestBody(), "CAT");
@@ -65,7 +65,7 @@ public class ImageServiceImplTest {
                 .message("Cannot convert an empty image")
                 .build();
         
-        when(imageConverter.convert(anyString())).thenThrow(exception);
+        when(imageConverter.createImage(anyString())).thenThrow(exception);
 
         assertThatThrownBy(()-> imageService.process("", "CAT"))
                 .isInstanceOf(GenericReaderException.class)
@@ -87,7 +87,7 @@ public class ImageServiceImplTest {
     @Test
     public void testNotValidSizeHeightException() {
 
-        when(imageConverter.convert(anyString())).thenReturn(getSingleLineRequestImage());
+        when(imageConverter.createImage(anyString())).thenReturn(getSingleLineRequestImage());
         when(resourceLoader.getPerfectImage(anyString())).thenReturn(getSquareImage());
         
         assertThatThrownBy(()-> imageService.process("++", "CAT"))
@@ -102,7 +102,7 @@ public class ImageServiceImplTest {
         image.setHeight(3);
         image.setWidth(1);
 
-        when(imageConverter.convert(anyString())).thenReturn(getSingleLineRequestImage());
+        when(imageConverter.createImage(anyString())).thenReturn(getSingleLineRequestImage());
         when(resourceLoader.getPerfectImage(anyString())).thenReturn(getSquareImage());
 
         assertThatThrownBy(()-> imageService.process("++", "CAT"))
@@ -112,7 +112,7 @@ public class ImageServiceImplTest {
 
     @Test
     public void testSameSizeShouldReturnOneMatch() {
-        when(imageConverter.convert(anyString())).thenReturn(getSquareImage());
+        when(imageConverter.createImage(anyString())).thenReturn(getSquareImage());
         when(resourceLoader.getPerfectImage(anyString())).thenReturn(getSquareImage());
 
         List<Match> matches = imageService.process("++\n++\n", "CAT");
@@ -122,7 +122,7 @@ public class ImageServiceImplTest {
 
     @Test
     public void testShouldReturnOneMatchLarger() {
-        when(imageConverter.convert(anyString())).thenReturn(getRequestImage2());
+        when(imageConverter.createImage(anyString())).thenReturn(getRequestImage2());
         when(resourceLoader.getPerfectImage(anyString())).thenReturn(getLargerSquareImage());
 
         List<Match> matches = imageService.process("++ +\n+++\n+++ \n  ++", "CAT");

@@ -1,4 +1,4 @@
-package src.service.impl;
+package src.factory.impl;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,14 +7,14 @@ import org.springframework.util.StringUtils;
 import src.enums.ErrorCode;
 import src.model.Image;
 import src.model.exceptions.GenericReaderException;
-import src.service.ImageConverter;
+import src.factory.ImageFactory;
 
 @Service
-public class ImageConverterImpl implements ImageConverter {
+public class ImageFactoryImpl implements ImageFactory {
 
-    private static Logger logger = LoggerFactory.getLogger(ImageConverterImpl.class);
+    private static Logger logger = LoggerFactory.getLogger(ImageFactoryImpl.class);
 
-    public Image convert(String imageText) {
+    public Image createImage(String imageText) {
 
         validateImageText(imageText);
         
@@ -33,7 +33,7 @@ public class ImageConverterImpl implements ImageConverter {
         image.setWidth(imageWidth);
         image.setHeight(splitImage.length);
 
-        logger.info("Successfully converted requested image body. width={} height={}", image.getWidth(), image.getHeight());
+        logger.info("Successfully created requested image body. width={} height={}", image.getWidth(), image.getHeight());
 
         return image;
     }
@@ -42,7 +42,7 @@ public class ImageConverterImpl implements ImageConverter {
         if (StringUtils.isEmpty(imageText)) {
             throw GenericReaderException.builder()
                     .errorCode(ErrorCode.EMPTY_IMAGE_TEXT)
-                    .message("Cannot convert an empty image")
+                    .message("Cannot create an empty image")
                     .build();
         }
     }

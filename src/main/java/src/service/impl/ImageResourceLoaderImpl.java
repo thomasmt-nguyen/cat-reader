@@ -3,9 +3,10 @@ package src.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import src.enums.ErrorCode;
+import src.factory.impl.ImageFactoryImpl;
 import src.model.Image;
 import src.model.exceptions.GenericReaderException;
-import src.service.ImageConverter;
+import src.factory.ImageFactory;
 import src.service.ImageResourceLoader;
 
 import java.io.IOException;
@@ -15,17 +16,17 @@ import java.nio.file.Paths;
 @Service
 public class ImageResourceLoaderImpl implements ImageResourceLoader {
 
-    private ImageConverter imageConverter;
+    private ImageFactory imageFactory;
 
     @Autowired
-    public ImageResourceLoaderImpl(ImageConverterImpl imageConverter) {
-        this.imageConverter = imageConverter;
+    public ImageResourceLoaderImpl(ImageFactoryImpl imageConverter) {
+        this.imageFactory = imageConverter;
     }
 
     public Image getPerfectImage(String type) {
         String resourcePath = getResourcePath(type);
         String imageText = readFile(resourcePath);
-        return imageConverter.convert(imageText);
+        return imageFactory.createImage(imageText);
     }
 
     private String readFile(String resourcePath) {

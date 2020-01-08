@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="src.service.ImageFactoryImplTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2020-01-08T04:42:48" hostname="SDGL160adabd1.corp.intuit.net" time="0.046">
+  <properties/>
+  <testcase name="testWhiteSpacesCenter" classname="src.service.ImageFactoryImplTest" time="0.001"/>
+  <testcase name="testSingleLineImage" classname="src.service.ImageFactoryImplTest" time="0.001"/>
+  <testcase name="testConvert" classname="src.service.ImageFactoryImplTest" time="0.002"/>
+  <testcase name="testEmptyMatchSearchNull" classname="src.service.ImageFactoryImplTest" time="0.041"/>
+  <testcase name="testEmptyMatchSearch" classname="src.service.ImageFactoryImplTest" time="0.0"/>
+  <testcase name="testSinglePixel" classname="src.service.ImageFactoryImplTest" time="0.0"/>
+  <system-out><![CDATA[2020-01-07 20:42:48.980  INFO 29242 --- [    Test worker] src.factory.impl.ImageFactoryImpl        : Successfully created requested image body. width=2.0 height=2.0
+2020-01-07 20:42:48.981  INFO 29242 --- [    Test worker] src.factory.impl.ImageFactoryImpl        : Successfully created requested image body. width=2.0 height=1.0
+2020-01-07 20:42:48.982  INFO 29242 --- [    Test worker] src.factory.impl.ImageFactoryImpl        : Successfully created requested image body. width=3.0 height=3.0
+2020-01-07 20:42:49.025  INFO 29242 --- [    Test worker] src.factory.impl.ImageFactoryImpl        : Successfully created requested image body. width=1.0 height=1.0
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

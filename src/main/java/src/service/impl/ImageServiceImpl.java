@@ -6,10 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import src.enums.ErrorCode;
 import src.enums.ImageType;
+import src.factory.impl.ImageFactoryImpl;
 import src.model.Match;
 import src.model.Image;
 import src.model.exceptions.GenericReaderException;
-import src.service.ImageConverter;
+import src.factory.ImageFactory;
 import src.service.ImageResourceLoader;
 import src.service.ImageService;
 
@@ -23,20 +24,20 @@ public class ImageServiceImpl implements ImageService {
 
     private Logger logger = LoggerFactory.getLogger(ImageServiceImpl.class);
 
-    private ImageConverter imageConverter;
+    private ImageFactory imageFactory;
 
     private ImageResourceLoader imageResourceLoader;
 
     @Autowired
-    public ImageServiceImpl(ImageConverterImpl imageConverter, ImageResourceLoaderImpl imageResourceLoader) {
-        this.imageConverter = imageConverter;
+    public ImageServiceImpl(ImageFactoryImpl imageConverter, ImageResourceLoaderImpl imageResourceLoader) {
+        this.imageFactory = imageConverter;
         this.imageResourceLoader = imageResourceLoader;
     }
 
     public List<Match> process(String requestedImageBody, String requestedImageType) {
 
         ImageType imageType = translateImageType(requestedImageType);
-        Image requestImage = imageConverter.convert(requestedImageBody);
+        Image requestImage = imageFactory.createImage(requestedImageBody);
         Image perfectImage = imageResourceLoader.getPerfectImage(imageType.getValue());
         validateRequestImage(requestImage, perfectImage);
 

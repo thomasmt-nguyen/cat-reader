@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="src.service.ImageServiceImplTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2019-12-30T18:43:57" hostname="SDGL160adabd1.corp.intuit.net" time="0.092">
+<testsuite name="src.service.ImageServiceImplTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2020-01-08T04:42:49" hostname="SDGL160adabd1.corp.intuit.net" time="0.049">
   <properties/>
-  <testcase name="testException" classname="src.service.ImageServiceImplTest" time="0.085"/>
+  <testcase name="testException" classname="src.service.ImageServiceImplTest" time="0.04"/>
   <testcase name="testNotValidSizeHeightException" classname="src.service.ImageServiceImplTest" time="0.002"/>
   <testcase name="testProcess" classname="src.service.ImageServiceImplTest" time="0.001"/>
-  <testcase name="testSameSizeShouldReturnOneMatch" classname="src.service.ImageServiceImplTest" time="0.0"/>
-  <testcase name="testNotValidTypeException" classname="src.service.ImageServiceImplTest" time="0.001"/>
+  <testcase name="testSameSizeShouldReturnOneMatch" classname="src.service.ImageServiceImplTest" time="0.001"/>
+  <testcase name="testNotValidTypeException" classname="src.service.ImageServiceImplTest" time="0.0"/>
   <testcase name="testShouldReturnOneMatchLarger" classname="src.service.ImageServiceImplTest" time="0.002"/>
-  <testcase name="testNotValidSizeWidthException" classname="src.service.ImageServiceImplTest" time="0.001"/>
-  <system-out><![CDATA[2019-12-30 10:43:57.861  INFO 78469 --- [    Test worker] src.service.impl.ImageServiceImpl        : Successfully matched images matches=[Match(x=0, y=0, confidence=100.0), Match(x=1, y=1, confidence=100.0)]
-2019-12-30 10:43:57.862  INFO 78469 --- [    Test worker] src.service.impl.ImageServiceImpl        : Successfully matched images matches=[Match(x=0, y=0, confidence=100.0)]
-2019-12-30 10:43:57.864  INFO 78469 --- [    Test worker] src.service.impl.ImageServiceImpl        : Successfully matched images matches=[Match(x=0, y=0, confidence=88.88)]
+  <testcase name="testNotValidSizeWidthException" classname="src.service.ImageServiceImplTest" time="0.002"/>
+  <system-out><![CDATA[2020-01-07 20:42:49.076  INFO 29242 --- [    Test worker] src.service.impl.ImageServiceImpl        : Successfully matched images matches=[Match(x=0, y=0, confidence=100.0), Match(x=1, y=1, confidence=100.0)]
+2020-01-07 20:42:49.077  INFO 29242 --- [    Test worker] src.service.impl.ImageServiceImpl        : Successfully matched images matches=[Match(x=0, y=0, confidence=100.0)]
+2020-01-07 20:42:49.080  INFO 29242 --- [    Test worker] src.service.impl.ImageServiceImpl        : Successfully matched images matches=[Match(x=0, y=0, confidence=88.88)]
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
