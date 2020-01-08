@@ -70,7 +70,7 @@ public class ImageServiceImpl implements ImageService {
 
         for (int requestY = 0; requestY <= requestImage.getHeight() - perfectImage.getHeight(); requestY++) {
             for (int requestX = 0; requestX <= requestImage.getWidth() - perfectImage.getWidth(); requestX++) {
-                double matchedPixels = getMatchedPixels(requestX, requestY, requestImage, perfectImage, minimumThreshold);
+                double matchedPixels = executePerfectImageScan(requestX, requestY, requestImage, perfectImage, minimumThreshold);
                 if (matchedPixels > minimumThreshold) {
                     double matchPercentage = BigDecimal.valueOf((matchedPixels / perfectImage.getTotalPixels()) * 100)
                             .setScale(2, RoundingMode.DOWN)
@@ -96,21 +96,21 @@ public class ImageServiceImpl implements ImageService {
         return matchLocations;
     }
     
-    private double getMatchedPixels(int requestX, int requestY, Image requestImage, Image perfectImage, int minimumThreshold) {
+    private double executePerfectImageScan(int requestX, int requestY, Image requestImage, Image perfectImage, int minimumThreshold) {
 
         char[][] perfectGraph = perfectImage.getGraph();
         char[][] requestGraph = requestImage.getGraph();
-        double remainingThreshold = perfectImage.getTotalPixels();
+        double remainingPixelThreshold = perfectImage.getTotalPixels();
 
-        for (int perfectY = 0; perfectY < perfectImage.getHeight() && remainingThreshold > minimumThreshold; perfectY++) {
-            for (int perfectX = 0; perfectX < perfectImage.getWidth() && remainingThreshold > minimumThreshold; perfectX++) {
+        for (int perfectY = 0; perfectY < perfectImage.getHeight() && remainingPixelThreshold > minimumThreshold; perfectY++) {
+            for (int perfectX = 0; perfectX < perfectImage.getWidth() && remainingPixelThreshold > minimumThreshold; perfectX++) {
                 char requestPixel = requestGraph[requestY + perfectY][requestX + perfectX];
                 char perfectPixel = perfectGraph[perfectY][perfectX];
-                remainingThreshold -= requestPixel == perfectPixel ? 0 : 1;
+                remainingPixelThreshold -= requestPixel == perfectPixel ? 0 : 1;
             }
         }
 
-        return remainingThreshold;
+        return remainingPixelThreshold;
     }
     
     private int calculateAcceptableThreshold(Image image){
